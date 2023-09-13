@@ -1,10 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { combineReducers } from 'redux'
 import { useDispatch } from 'react-redux'
-import { reducer as gameDataReducer } from './slices/Data/reducer'
-
+import { reducer as dataReducer } from './slices/Data/reducer'
+import { reducer as gameReducer } from './slices/Game/reducer'
 const reducer = combineReducers({
-  data: gameDataReducer
+  data: dataReducer,
+  game: gameReducer
 })
 
 const store = configureStore({
