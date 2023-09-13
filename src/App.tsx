@@ -8,7 +8,7 @@ import Results from "./views/Results";
 
 function App() {
   return (
-    <Provider store={store}>
+    <Provider store={store}> 
       <ChakraProvider theme={theme}>
       <BrowserRouter>
             <Routes>
