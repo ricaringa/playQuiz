@@ -4,45 +4,12 @@ import AfterGameMessge from "../../components/AfterGameMessage";
 import useGame from "../../hooks/useGame";
 import GameButtons from "../../components/GameButtons";
 import { useNavigate } from "react-router-dom";
-import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 
 export default function Results() {
   const { Loading } = useData();
   const { gameStatus } = useGame();
   const navigate = useNavigate();
-  // const imageRef = useRef<HTMLDivElement>(null);
-  // const handleShare = async () => {
-  //   if (imageRef.current === null) {
-  //     return
-  //   } else {
-  //     if(imageRef.current!==null){
-  //     const newFile = await toBlob(imageRef.current);
-      
-  //     const data = {
-  //       files: [
-  //         //@ts-ignore
-  //         new File([newFile], "image.png", {
-  //           //@ts-ignore
-  //           type: newFile.type
-  //         })
-  //       ],
-  //       title: 'PlayQuiz',
-  //       text: `Ven y prueba tus skills en geografia`,
-  //       url: 'https://rickquizz.web.app/'
-  //     };
-  //     try {
-  //       if (!navigator.canShare(data)) {
-  //         console.error("Can't share");
-  //       }
-  //       await navigator.share(data);
-  //     } catch (err) {
-  //       console.error(err);
-  //     }
-  //   }
-      
-  // }
-  // };
   if (gameStatus === "Playing") {
     navigate("/");
   }
@@ -56,7 +23,7 @@ export default function Results() {
       flexDir={"column"}
       // ref={imageRef}
     >
-      <Navbar />
+      {/* <Navbar /> */}
       <Center w={"full"}>
         <Box
           w={{ base: "80vw", sm: "60vw", md: "50vw", lg: "30vw", xl: "25vw" }}
@@ -81,15 +48,6 @@ export default function Results() {
             <AfterGameMessge />
           </Center>
           <Center marginTop={"25vh"}>
-            {/* <Button
-              w={"-moz-fit-content"}
-              rightIcon={<FaShareFromSquare />}
-              colorScheme="yellow"
-              variant="solid"
-              onClick={handleShare}
-            >
-              Share
-            </Button> */}
             {gameStatus === "Finished" && <GameButtons />}
           </Center>
         </Box>

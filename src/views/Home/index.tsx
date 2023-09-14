@@ -1,12 +1,11 @@
 import { Center, Spinner } from '@chakra-ui/react'
-import GameBox from '../../components/GameBox'
-import { useEffect, useState } from 'react';
+import { Suspense, lazy, useEffect, useState } from 'react';
 import { useAppDispatch } from '../../app/index';
 import { getCountriesData } from '../../app/slices/Data/reducer';
 import useData from '../../hooks/useData';
-import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 
+const GameBoxLoader = lazy(()=> import('../../components/GameBox/index'))
 export default function Home() {
   const [error, setError] = useState<string>("");
 const [loading, setLoading] = useState(false);
@@ -28,8 +27,11 @@ const dispatch = useAppDispatch();
 }, []);
   return loading ? <Spinner /> :  (
     <Center  h={{base: '100vh', lg: 'calc(100vh)'}} fontFamily={'Urbanist'} bgImage={`${import.meta.env.VITE_PATH_TO_ASSETS}/background.png`} flexDir={'column'}>
-      <Navbar />
-      <GameBox />
+      {/* <Navbar /> */}
+      {/* <GameBox /> */}
+      <Suspense fallback={<Spinner />}>
+        <GameBoxLoader />
+      </Suspense>
       
 <Footer />
     </Center>
