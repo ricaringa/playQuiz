@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 export enum GameStatus{
   preGame = 'Pre-Game',
   playing = 'Playing',
@@ -23,25 +23,7 @@ const initialState: initialStateType = {
   showAnswer: false,
   userAnswer: ''
 }
-export interface getMeProps {
-  userId: number,
-  token: string
-}
-export const saveMatchHistory = createAsyncThunk(
-  'games/saveMatch',
-  async (data : getMeProps) => {
-    const response = await fetch(`http://localhost:9999/users/${data.userId}`,{
-      method: "GET",
-      headers: {
-        "x-token": data.token
-      }
-    })
-    if(response.status === 200){
-      return response.json()
-    }
-    return response.json()
-  }
-)
+
 const gameSlice = createSlice({
   name: 'game',
   initialState,
